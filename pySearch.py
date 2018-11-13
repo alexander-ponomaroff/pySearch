@@ -91,4 +91,4 @@ for search in args.s:
     searchObj.setQuery(search)
     searchObj.buildLink()
     searchObj.openBrowser()
-    
+
