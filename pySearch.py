@@ -47,35 +47,44 @@ class Search:
         else:
             self.searchQuery = "+".join(self.searchRaw)
         #end of search exceptions
-        print(self.ping())
         self.url = "http://www." + self.engine + "." + self.domain + self.searchString + self.searchQuery
     #end of link building
 
+    def openBrowser(self):
+        
+        pingSuccess = self.ping()
+        
+        if pingSuccess == "invalid":
+            print("The url is invalid, unable to find new url")
+        else:
+            if pingSuccess == "domain found":
+                print("The url is invalid, opened "+self.url+" instead!")
+            webbrowser.open_new_tab(self.url)
+    #end of openBrowser()
+    
     def ping(self):
     
         popularDomains = ["ca", "com", "de", "cn", "net", "uk", "org", "info",
                           "nl", "eu", "ru"]
-    
-        # Checks if the operating system is windows
-        param = '-n' if platform.system().lower()=='windows' else '-c'
-    
-        command = ['ping', param, '1', self.engine + "." + self.domain]
-    
-        if subprocess.call(command) != 0:
-            
+        
+        if platform.system().lower() == "windows":
+            command = ["C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\powershell.exe", "Invoke-RestMethod", "-Uri", self.url]
+        else: 
+            command = ["curl", "-X", "POST", self.url]
+
+        if subprocess.call(command, shell = True) != 0:
             for dom in popularDomains:
                 
-                command = ['ping', param, '1', self.engine + "." + dom]
+                self.url = "http://www." + self.engine + "." + dom + self.searchString + self.searchQuery
+                self.domain = dom
+                command[3]= self.url
                 
                 if subprocess.call(command) == 0:
-                    self.domain = dom
-                    return "The domain you entered didn't work! Here's one that works: " + dom
-        else:
-            return "The domain you entered worked!"
-
-    def openBrowser(self):
-        webbrowser.open_new_tab(self.url)
-    #end of openBrowser()
+                    return "domain found"            
+            return "invalid"
+        else:            
+            return "valid"
+        
 #end of Query
 
 searchObj = Search()
