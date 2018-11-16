@@ -13,7 +13,7 @@ argparser.add_argument("-d", "--domain", help="Changes the domain extention", na
 args = argparser.parse_args()
 
 class Search:
-    def __init__(self, searchIn = None, engineIn = "google", domainIn = "com"):
+    def __init__(self, searchIn = None, engineIn = "google", domainIn = "ca"):
         self.searchRaw = searchIn
         self.searchQuery = ""
         self.engine = engineIn
