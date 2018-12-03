@@ -1,18 +1,25 @@
 #jrkong's command line searcher
+<<<<<<< HEAD
 
+from urllib.parse import quote
 import urllib
+=======
+>>>>>>> test-framework
 import argparse
-import webbrowser
+
 import platform
 import subprocess
 
+from search import Search
+
 argparser = argparse.ArgumentParser()
-argparser.add_argument("-s", action="append", help="Takes a query to search for and searches it.", nargs="*")
+argparser.add_argument("-s", action="append", help="Takes a query to search for and searches it.", nargs="*", required=True)
 argparser.add_argument("-e", "--engine", help="Changes the name or alias of a search engine and sets it as the search engine for the session", nargs="+")
 argparser.add_argument("-d", "--domain", help="Changes the domain extention", nargs="+")
 
 args = argparser.parse_args()
 
+<<<<<<< HEAD
 class Search:
     def __init__(self, searchIn = None, engineIn = "google", domainIn = "ca"):
         self.searchRaw = searchIn
@@ -47,7 +54,7 @@ class Search:
         else:
             self.searchQuery = "+".join(self.searchRaw)
         #end of search exceptions
-        self.url = "http://www." + self.engine + "." + self.domain + self.searchString + self.searchQuery
+        self.url = "http://www." + self.engine + "." + self.domain + self.searchString + quote(self.searchQuery.encode('utf8'))
     #end of link building
 
     def openBrowser(self):
@@ -87,17 +94,9 @@ class Search:
         
 #end of Query
 
+=======
+>>>>>>> test-framework
 searchObj = Search()
 
-if args.engine is not None:
-    searchObj.setEngine(args.engine[0])
-
-if args.domain is not None:
-    searchObj.setDomain(args.domain[0])
-#end of cmd args handling
-
-for search in args.s:
-    searchObj.setQuery(search)
-    searchObj.buildLink()
-    searchObj.openBrowser()
+searchObj.handleArgs(args)
 
