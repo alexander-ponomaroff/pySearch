@@ -52,27 +52,28 @@ class Search:
             webbrowser.open_new_tab(self.url)
     #end of openBrowser()
 
-def ping(self):
-    
-    popularDomains = ["ca", "com", "de", "cn", "net", "uk", "org", "info",
-                      "nl", "eu", "ru"]
+    def ping(self):
         
-    if platform.system().lower() == "windows":
-        command = ["C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\powershell.exe", "Invoke-RestMethod", "-Uri", self.url]
-    else:
-        command = ["curl", "-X", "POST", self.url]
-            if subprocess.call(command, shell = True) != 0:
-                for dom in popularDomains:
-        
-            self.url = "http://www." + self.engine + "." + dom + self.searchString + self.searchQuery
-            self.domain = dom
-            command[3]= self.url
+        popularDomains = ["ca", "com", "de", "cn", "net", "uk", "org", "info",
+                          "nl", "eu", "ru"]
             
-            if subprocess.call(command) == 0:
-                return "domain found"
-                    return "invalid"
-                else:
-                    return "valid"
+        if platform.system().lower() == "windows":
+            command = ["C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\powershell.exe", "Invoke RestMethod", "-Uri", self.url]
+        else:
+            command = ["curl", "-X", "POST", self.url]
+
+        if subprocess.call(command, shell = True) != 0:
+            for dom in popularDomains:
+
+                self.url = "http://www." + self.engine + "." + dom + self.searchString + self.searchQuery
+                self.domain = dom
+                command[3]= self.url
+
+                if subprocess.call(command) == 0:
+                    return "domain found"
+            return "invalid"
+        else:
+            return "valid"
 
     def handleArgs(self, args):
         if args.engine is not None:
