@@ -30,14 +30,7 @@ class Search:
     def buildLink(self):
         if self.engine == "amazon":
             self.searchString = "/s/keywords="
-            self.searchQuery = "%20".join(self.searchRaw)
-
-
-
-
-
-
-            
+            self.searchQuery = "%20".join( self.searchRaw )
         elif self.engine == "twitter":
             self.searchQuery = " ".join(self.searchRaw)
         else:
