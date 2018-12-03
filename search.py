@@ -1,6 +1,8 @@
 
 import urllib
 import webbrowser
+import platform
+import subprocess
 
 class Search:
     def __init__(self, searchIn = None, engineIn = "google", domainIn = "ca"):
@@ -41,8 +43,36 @@ class Search:
     #end of link building
 
     def openBrowser(self):
-        webbrowser.open_new_tab(self.url)
+        pingSuccess = self.ping()
+        if pingSuccess == "invalid":
+            print("The url is invalid, unable to find new url")
+        else:
+            if pingSuccess == "domain found":
+                print("The url is invalid, opened "+self.url+" instead!")
+            webbrowser.open_new_tab(self.url)
     #end of openBrowser()
+
+def ping(self):
+    
+    popularDomains = ["ca", "com", "de", "cn", "net", "uk", "org", "info",
+                      "nl", "eu", "ru"]
+        
+    if platform.system().lower() == "windows":
+        command = ["C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\powershell.exe", "Invoke-RestMethod", "-Uri", self.url]
+    else:
+        command = ["curl", "-X", "POST", self.url]
+            if subprocess.call(command, shell = True) != 0:
+                for dom in popularDomains:
+        
+            self.url = "http://www." + self.engine + "." + dom + self.searchString + self.searchQuery
+            self.domain = dom
+            command[3]= self.url
+            
+            if subprocess.call(command) == 0:
+                return "domain found"
+                    return "invalid"
+                else:
+                    return "valid"
 
     def handleArgs(self, args):
         if args.engine is not None:
