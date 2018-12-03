@@ -68,8 +68,8 @@ Please read [CONTRIBUTING.md] for details on our code of conduct, and the proces
 
 ## Authors
 
-* **Alex Kong** - *Initial work* ( https://github.com/jrkong )
-* **Alexander Ponomaroff** - *Contributor* ( https://github.com/alexander-ponomaroff )
+* **Alex Kong** ( https://github.com/jrkong )
+* **Alexander Ponomaroff** ( https://github.com/alexander-ponomaroff )
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project. (TO be added) 
 
