@@ -13,3 +13,4 @@ pycodestyle:
         - F401, # '...' imported but unused
         - W292, # no newline at end of file
         - W293 # blank line contains whitespace
+        
