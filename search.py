@@ -1,4 +1,3 @@
-
 import urllib
 import webbrowser
 import platform
@@ -48,7 +47,7 @@ class Search:
             print("The url is invalid, unable to find new url")
         else:
             if pingSuccess == "domain found":
-                print("The url is invalid, opened "+self.url+" instead!")
+                print("The url is invalid, opened " + self.url + " instead!")
             webbrowser.open_new_tab(self.url)
     #end of openBrowser()
 
@@ -67,7 +66,7 @@ class Search:
 
                 self.url = "http://www." + self.engine + "." + dom + self.searchString + self.searchQuery
                 self.domain = dom
-                command[3]= self.url
+                command[3] = self.url
 
                 if subprocess.call(command) == 0:
                     return "domain found"
