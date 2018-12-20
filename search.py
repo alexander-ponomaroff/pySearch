@@ -1,4 +1,3 @@
-
 import urllib
 import webbrowser
 
@@ -54,13 +53,13 @@ class Search:
             self.domain = "org"
         elif self.engine == "boardreader":
             self.searchString = "/s/"
-            self.searchQuery = "+".join(self.searchRaw)+".html"
+            self.searchQuery = "+".join(self.searchRaw) + ".html"
         elif self.engine == "ask":
             self.searchString = "/web?q="
             self.searchQuery = "+".join(self.searchRaw)
         elif self.engine == "facebook":
             self.searchString = "/search/str/"
-            self.searchQuery = "+".join(self.searchRaw)+"/keywords_search"
+            self.searchQuery = "+".join(self.searchRaw) + "/keywords_search"
         elif self.engine == "yahoo":
             self.searchString = "/search?p="
             self.searchQuery = "+".join(self.searchRaw)
